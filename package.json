@@ -1,10 +1,12 @@
 {
   "name": "personal-portfolio",
+  "private": true,
   "version": "1.0.0",
   "description": "My personal portfolio",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run dev -w web",
+    "build": "npm run build -w web"
   },
   "repository": {
     "type": "git",
@@ -19,7 +21,7 @@
   },
   "homepage": "https://github.com/StepTred/Portfolio#readme",
   "workspaces": [
-    "apps/",
-    "packages/"
+    "apps/*",
+    "packages/*"
   ]
 }
