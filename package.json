@@ -5,15 +5,16 @@
   "description": "My personal portfolio",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run dev -w web",
-    "build": "npm run build -w web"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently -n shared,api,web -c yellow,blue,green \"npm run dev -w @portfolio/shared\" \"npm run dev -w api\" \"npm run dev -w web\"",
+    "build": "npm run build -w @portfolio/shared && npm run build -w api && npm run build -w web"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/StepTred/Portfolio.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Stephen Tredger",
   "license": "ISC",
   "type": "module",
   "bugs": {
@@ -23,5 +24,8 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "concurrently": "^10.0.7"
+  }
 }
