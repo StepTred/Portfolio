@@ -1,13 +1,19 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import { useEffect, useState } from "react";
+import type { HealthResponse } from "@portfolio/shared";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [health, setHealth] = useState<HealthResponse | null>(null);
 
-  return <header>Stephen Tredger</header>
+  useEffect(() => {
+    fetch("/api/v1/health")
+      .then((res) => res.json() as Promise<HealthResponse>)
+      .then(setHealth)
+      .catch(() => setHealth(null));
+  }, []);
+
+  return (<div><header>Stephen Tredger</header>
+  <p>API Status: {health ? health.status: "unreachable"}</p></div>)
 }
 
 export default App
